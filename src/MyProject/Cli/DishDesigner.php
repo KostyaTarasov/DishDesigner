@@ -32,11 +32,11 @@ class DishDesigner extends AbstractCommand
             }
 
             $result[] = [
-                'products' => $productData,
+                'products' => $this->sortProducts($productData),
                 'price' => $price,
             ];
         }
-
+        $result = $this->deleteDuplucate($result);
         echo json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
@@ -63,5 +63,23 @@ class DishDesigner extends AbstractCommand
                 $this->generateCombinations($ingredients, $currentIndex + 1, $newCombination, $combinations);
             }
         }
+    }
+
+    private function sortProducts(array $productData): array
+    {
+        usort($productData, function ($a, $b) {
+            if ($a['type'] == $b['type']) {
+                return strcmp($a['value'], $b['value']);
+            }
+        });
+
+        return $productData;
+    }
+
+    private function deleteDuplucate(array $result): array
+    {
+        $uniqueData = array_map('unserialize', array_unique(array_map('serialize', $result)));
+        
+        return array_values($uniqueData);
     }
 }
