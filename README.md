@@ -26,11 +26,26 @@
 
 ## Установка и запуск
 
-1. Клонируйте репозиторий: `git clone https://github.com/KostyaTarasov/DishDesigner.git`
-2. Выполните composer install
+1. Клонируйте репозиторий:
+
+   ```
+   git clone https://github.com/KostyaTarasov/DishDesigner.git
+   ```
+
+2. Установите пакеты:
+
+   ```
+   composer install
+   ```
+
 3. Настройте окружение и базу данных. Подключение к БД в файле src/settings.php
  - 'host' => 'localhost:3306',
  - 'dbname' => 'dish-designer',
  - 'user' => 'root',
  - 'password' => '',
-4. Команда для кода "dcii" в терминале: php bin/cli.php DishDesigner dcii
+
+4. Команда для кода "dcii" в терминале:
+
+   ```
+   php bin/cli.php DishDesigner dcii
+   ```
